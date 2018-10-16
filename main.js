@@ -11,8 +11,8 @@ const imgKegs = document.querySelector(".imgKegs");
 const imgKegsOfftap = document.querySelector(".imgKegs-offtap");
 const tags = document.querySelector(".tags");
 const categories = document.querySelector(".categories");
-const workLoadStat = document.querySelector(".work-hard");
-const square = document.querySelector(".square");
+
+// const square = document.querySelector(".square");
 const modal = document.querySelector(".modal");
 
 let beerCategoris = [];
@@ -28,17 +28,20 @@ let bartenderServed = [0, 0, 0];
 //let bartenderServed = [[], [], []]; // if use served customer count as base for work load calculation, then use 3[]
 
 window.addEventListener("DOMContentLoaded", init);
+
 function init() {
   let data = JSON.parse(FooBar.getData());
   console.log(data);
   beers = data.beertypes;
   beers.forEach(getCategory);
+
   function getCategory(b) {
     if (beerCategoris.indexOf(b.category) < 0) {
       beerCategoris.push(b.category);
     }
   }
   beerCategoris.forEach(addTag);
+
   function addTag(bC) {
     let cate = document.createElement("li");
     cate.textContent = bC;
@@ -74,6 +77,7 @@ function init() {
       buildStructure(data);
     });
 }
+
 function buildStructure(data) {
   // build bar overview based on which beers are on tap, plus the ones that are left
   // it's possible that the same beer is on more than 1 tap, so total amount of kegs is not always 10, rather the 7 taps plus the number of beers that are left
@@ -81,6 +85,7 @@ function buildStructure(data) {
   // reset beer section before append new child
   beerSection.innerHTML = "";
   taps.forEach(buildTap);
+
   function buildTap(t, index) {
     let eachTap = document.createElement("div");
     eachTap.className = "beer";
@@ -169,6 +174,7 @@ function buildStructure(data) {
   // generate bartenders
   bartenderS = data.bartenders;
   bartenderS.forEach(generateBartender);
+
   function generateBartender(b, bIndex) {
     let bartender = document.createElement("div");
     bartender.className = "bartender hide";
@@ -184,11 +190,12 @@ function buildStructure(data) {
     bartenderLegend.className = "hide"; // no need to display, just store the data
     bartenderLegend.setAttribute("data-bartenderIndex", bIndex);
     bartenderLegend.textContent = b.name;
-    workLoadStat.appendChild(bartenderLegend);
+
   }
 
   const aliveKegs = document.querySelectorAll(".beer:not(.not-on-tap)");
   aliveKegs.forEach(listenClick);
+
   function listenClick(ak) {
     ak.addEventListener("click", function(m) {
       let beerClicked = m.target.getAttribute("data-beerindex");
@@ -203,10 +210,12 @@ function update() {
   let data = JSON.parse(FooBar.getData());
   // check storage of each beer, show on all if there are dulplicates
   beerSection.querySelectorAll(".beer").forEach(checkStorage);
+
   function checkStorage(b) {
     //  b.innerHTML = "";
     let beerName = b.dataset.beername;
     data.storage.forEach(checkMatch);
+
     function checkMatch(s) {
       if (s.name === beerName) {
         b.setAttribute("data-storage", s.amount);
@@ -222,6 +231,7 @@ function update() {
   // check each tap level
   taps = data.taps;
   taps.forEach(updateLevel);
+
   function updateLevel(t, index) {
     let level = t.level;
     let capacity = t.capacity;
@@ -256,9 +266,7 @@ function update() {
     customerInServingCount}, 30px)`;
   // generate each customer under service
   for (
-    let customerIndex = 0;
-    customerIndex < customerInServingCount;
-    customerIndex++
+    let customerIndex = 0; customerIndex < customerInServingCount; customerIndex++
   ) {
     let eachCustomer = document.createElement("div");
     eachCustomer.classList.add("serving");
@@ -273,9 +281,7 @@ function update() {
   }
   // generate each customer in queue
   for (
-    let customerIndex = 0;
-    customerIndex < customerInQueueCount;
-    customerIndex++
+    let customerIndex = 0; customerIndex < customerInQueueCount; customerIndex++
   ) {
     let eachCustomer = document.createElement("div");
     eachCustomer.setAttribute("data-ordernr", data.queue[customerIndex].id);
@@ -296,8 +302,8 @@ function update() {
         // find out the ordered beer is in which column
         let tapIndex = Number(
           document
-            .querySelector(`[data-beername='${o}']`)
-            .getAttribute("data-tapindex")
+          .querySelector(`[data-beername='${o}']`)
+          .getAttribute("data-tapindex")
         );
         let currentCount = document
           .querySelector(
@@ -330,8 +336,8 @@ function update() {
         // find out the ordered beer is in which column
         let tapIndex = Number(
           document
-            .querySelector(`[data-beername='${o}']`)
-            .getAttribute("data-tapindex")
+          .querySelector(`[data-beername='${o}']`)
+          .getAttribute("data-tapindex")
         );
         //        console.log("tapIndex: " + tapIndex);
         let currentCount = document
@@ -374,6 +380,7 @@ function update() {
   // position bartender
   bartenderS = data.bartenders;
   bartenderS.forEach(updateBartender);
+
   function updateBartender(b, i) {
     let bartenderName = b.name;
     document
@@ -382,37 +389,13 @@ function update() {
     document
       .querySelector(`[data-name='${bartenderName}']`)
       .setAttribute("data-servingCustomer", b.servingCustomer);
-    /** use this part if want to calculate work load share based on customer served by each bartender */
-    // if (
-    //   b.servingCustomer &&
-    //   bartenderServed[i].indexOf(b.servingCustomer) < 0
-    // ) {
-    //   bartenderServed[i].push(b.servingCustomer);
-    //   let totalServed = 0;
-    //   for (let s of bartenderServed) {
-    //     totalServed += s.length;
-    //   }
-    //   console.log(bartenderServed, totalServed);
-    //   square.innerHTML = "";
-    //   for (let i = 0; i < bartenderServed.length; i++) {
-    //     let portion = document.createElement("div");
-    //     portion.style.height = `${(bartenderServed[i].length / totalServed) *
-    //       100}%`;
-    //     let name = document.querySelector("p");
-    //     name.className = "each-portion";
-    //     name.textContent = document.querySelector(
-    //       `[data-bartenderindex='${i}']`
-    //     ).textContent;
-    //     portion.appendChild(name);
-    //     square.appendChild(portion);
-    //   }
-    // }
+
 
     if (b.statusDetail === "pourBeer") {
       if (
         document
-          .querySelector(`.labels>div:nth-of-type(${b.usingTap + 1})`)
-          .className.indexOf("lean") < 0
+        .querySelector(`.labels>div:nth-of-type(${b.usingTap + 1})`)
+        .className.indexOf("lean") < 0
       ) {
         // lean tap
         document.querySelector(
@@ -454,46 +437,8 @@ function update() {
       document.querySelector(
         `.labels>div:nth-of-type(${gridStart})`
       ).className = "";
-      // build work load share
-      document
-        .querySelector(`[data-name='${bartenderName}']`)
-        .classList.add("hide");
-      let sofar = bartenderServed[i];
-      sofar++;
-      bartenderServed[i] = sofar;
-      const sum = (sumSofar, elem) => sumSofar + elem;
-      let totalServed = bartenderServed.reduce(sum);
-      square.innerHTML = "";
-      for (let i = 0; i < bartenderServed.length; i++) {
-        let portion = document.createElement("div");
-        portion.style.height = `${(bartenderServed[i] / totalServed) * 100}%`;
-        let name = document.querySelector("p");
-        name.className = "each-portion";
-        name.textContent = document.querySelector(
-          `[data-bartenderindex='${i}']`
-        ).textContent;
-        portion.appendChild(name);
-        square.appendChild(portion);
-      }
-      // let finishedBeer = document.querySelector(
-      //   `[data-ordernr='${b.servingCustomer}'] p:nth-of-type(${
-      //     document.querySelector(`[data-name='${bartenderName}']`).style
-      //       .gridColumnStart
-      //   })`
-      // );
-      // let currentOrderCount = finishedBeer.textContent;
-      // finishedBeer.textContent = currentOrderCount - 1;
-      // if (currentOrderCount === 1) {
-      //   finishedBeer.classList.add("hide");
-      // }
-      // console.log(
-      //   b.name +
-      //     "is" +
-      //     document.querySelector(`[data-name='${bartenderName}']`).style
-      //       .gridColumnStart +
-      //     " cN " +
-      //     b.servingCustomer
-      // );
+
+
     }
   }
   setTimeout(update, 1000);
