@@ -1,0 +1,264 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Economica", sans-serif;
+}
+
+.beerTitle {
+  font-family: "Anton", sans-serif;
+  margin: 10px;
+  font-size: 33px;
+}
+
+header {
+  width: 100vw;
+  height: 15vh;
+  background-color: grey;
+  color: white;
+  text-align: center;
+}
+
+.similar {
+  display: inline-flex;
+}
+
+/*  main grid starts */
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(12, [col] 1fr);
+  grid-template-rows: repeat(4, [row] 2fr);
+}
+
+.sidebar {
+  background-color: rgb(83, 175, 83);
+  color: white;
+  grid-column: col;
+  grid-row: 1 / 5;
+}
+
+.beers {
+  background-color: rgb(196, 245, 245);
+  color: white;
+  grid-column: col 2 / span 10;
+  grid-row: row;
+}
+
+.rows {
+  background-color: rgb(247, 188, 188);
+  color: white;
+  grid-column: col 2 / span 10;
+  grid-row: row 2/5;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.row {
+  background-color: red;
+}
+
+.queue {
+  background-color: blue;
+  color: white;
+  grid-column: col 12;
+  grid-row: 1 / 5;
+}
+
+.beer {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-gap: 10px;
+}
+
+.singlbeer {
+  background-color: green;
+}
+
+/*  main grid ends */
+
+/*  beer profile grid starts */
+
+.beerWrapper {
+  display: grid;
+  grid-template-columns: repeat(12, [col] 2fr);
+  grid-template-rows: repeat(10, [row] 3fr);
+  /* overflow-x: hidden; */
+}
+
+.allBeers {
+  background-color: #333333;
+  color: white;
+  grid-column: col/span 2;
+  grid-row: 1 / 11;
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  /* grid-gap: 10px; */
+  overflow-x: scroll;
+  height: 100vh;
+  justify-content: center;
+}
+
+.beerOne {
+  background-color: aquamarine;
+}
+
+.aboutBeer {
+  background-color: rgb(235, 235, 235);
+  color: black;
+  grid-column: col 3 / span 2;
+  grid-row: 1 / 11;
+}
+
+.img {
+  width: 12vw;
+  background-color: bisque;
+  height: auto;
+  margin: 1em;
+  color: black;
+}
+
+.imgB {
+  background-color: bisque;
+  height: auto;
+  width: 5vw;
+  margin: 1em;
+  color: black;
+}
+
+.beerText {
+  padding: 1em;
+}
+
+.mainBeerdiv {
+  position: relative;
+  background-color: rgb(235, 235, 235);
+  color: black;
+  grid-column: col 5 / span 6;
+  grid-row: 1 / 11;
+  z-index: 2;
+}
+
+.positionGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2fr 3fr 2fr;
+}
+
+.beerAlc {
+  margin: 10px;
+}
+
+.barH1 {
+  font-size: 13px;
+}
+
+.foam {
+  position: relative;
+  width: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  /* position: absolute;
+  width: 8vw;
+  margin: 0 auto;
+  z-index: 2; */
+}
+
+.glass {
+  position: relative;
+  width: 200px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center top;
+  /* justify-content: center; */
+  /* position: absolute; */
+  /* width: 10vw; */
+}
+
+.color {
+  width: 150px;
+  height: 290px;
+  position: absolute;
+  bottom: 3px;
+  justify-self: center;
+  z-index: -1;
+}
+
+.foamAndGlass {
+  text-align: center;
+  display: grid;
+  grid-template-rows: 100px 300px;
+  justify-content: center;
+}
+
+.carbonation {
+  position: absolute;
+  width: 100px;
+  left: 220px;
+}
+
+.carbonation:nth-of-type(2) {
+  left: 230px;
+}
+
+.carbonation:nth-of-type(3) {
+  right: 10px;
+}
+
+.beerDesk {
+  margin-top: 15em;
+  padding: 1em;
+  color: black;
+}
+
+.bar {
+  display: grid;
+  border-radius: 10px;
+  grid-template-columns: repeat(5, 1fr);
+  border: 1px solid rgb(61, 61, 61);
+  /* width: 25vw; */
+  height: 2vh;
+  margin: 0 5em 0 5em;
+}
+
+.bars {
+  /* margin-top: 15em; */
+  display: grid;
+  grid-template-rows: repeat(2fr, 3);
+  grid-gap: 10px;
+  text-align: center;
+
+  position: relative;
+}
+
+.hidden {
+  display: none;
+}
+
+.bar>div {
+  border-radius: 10px;
+  width: 100%;
+}
+
+.bar.timeline {
+  visibility: initial;
+  background-color: initial;
+}
+
+.legend {
+  background-color: #333333;
+  color: white;
+  grid-column: col 11 / span 4;
+  grid-row: 1 / 11;
+}
+
+.legendImg {
+  height: 90vh;
+  padding: 3vh;
+}
+
+/*  beer profile grid ends*/
+.similarTitle {
+  margin-left: 10px;
+}

@@ -1,0 +1,309 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  position: relative;
+  font-family: "Economica", sans-serif;
+}
+section.beers {
+  height: 300px; /* need to finalise based on svg */
+  padding: 0 50px;
+  display: grid;
+  grid-gap: 0;
+}
+.beer {
+  width: 100%;
+  background-color: darkgoldenrod;
+  bottom: 0;
+  transition: all 1s linear;
+  transform-origin: bottom;
+  cursor: pointer;
+}
+.not-on-tap {
+  opacity: 0.3;
+  cursor: initial;
+}
+.change-keg {
+  animation: flash 1s infinite;
+}
+.soon-sold-out {
+  animation: flash 0.5s infinite;
+}
+@keyframes flash {
+  50% {
+    opacity: 0.5;
+  }
+}
+section.customers,
+section.glasses,
+section.storages,
+section.labels,
+section.nozzles,
+section.bartenders,
+section.storages {
+  display: grid;
+  grid-gap: 0;
+  padding: 0 50px;
+}
+section.customers > div {
+  display: grid;
+  border-bottom: 1px dotted #333333;
+  padding-top: 5px;
+  left: 70px;
+}
+section.customers {
+  padding-top: 30px;
+  margin-top: 20px;
+  background-color: rgb(235, 235, 235);
+  min-height: 175px;
+}
+section.bartenders {
+  background-color: rgb(235, 235, 235);
+}
+/* section.customers > div > * {
+  left: 75px; /* temp solution, not dynamic 
+} */
+
+.bartender {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  padding-top: 4px;
+  border: 2px dotted #333333;
+  grid-row-start: 1;
+}
+.bartender p {
+  text-align: center;
+}
+.serving {
+  color: #aaaaaa;
+}
+.hide {
+  display: none;
+}
+.imgKegs,
+.imgKegs-offtap {
+  height: auto;
+  position: absolute;
+  top: 15vh;
+  left: 50px;
+  pointer-events: none;
+}
+.imgKegs img,
+.imgKegs-offtap img {
+  width: 100%;
+}
+main {
+  background-color: #333333;
+  padding: 15vh 0 0 0;
+  height: 100vh;
+  overflow-x: hidden;
+}
+h1 {
+  font-size: 4em;
+  top: -1px;
+  font-weight: 700;
+  color: #333333;
+  position: absolute;
+  pointer-events: none;
+  font-family: "Anton", sans-serif;
+}
+section h1 {
+  font-family: "Economica", sans-serif;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.7vw;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  transform-origin: right top;
+  transform: rotate(-90deg) translate(-1vw, -7.2vw);
+}
+section.glasses {
+  height: 80px;
+  left: 5px;
+}
+section.glasses > div {
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  left: 15px;
+}
+
+aside {
+  height: 9vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background: rgb(235, 235, 235);
+  padding-top: 19px;
+  padding-left: 50px;
+}
+aside li {
+  display: inline-block;
+  line-height: 40px;
+  margin-right: 30px;
+  font-size: 23px;
+  font-weight: bold;
+  color: #333333;
+  cursor: pointer;
+}
+.categories {
+  text-align: right;
+}
+.found {
+  animation: found ease-in 0.3s;
+}
+@keyframes found {
+  50% {
+    transform: scaleY(1.1);
+  }
+}
+#statistic {
+  color: #333333;
+  width: 29%;
+  height: 91vh;
+  background: rgba(235, 235, 235, 0.95);
+  position: fixed;
+  right: 0;
+  top: 9vh;
+  padding: 10px 4%;
+  transition: all 0.1s ease-in-out;
+  border-left: 5px solid white;
+  overflow: scroll;
+}
+#statistic p.close,
+#statistic h2 {
+  display: inline-block;
+  left: -35px;
+}
+#statistic h2 {
+  margin-left: 10px;
+}
+#statistic * {
+  transition: all 0.3s ease-in-out;
+}
+#statistic.close {
+  right: -24%;
+}
+#statistic.close * {
+  opacity: 0;
+}
+#statistic.close p.close {
+  opacity: 1;
+}
+p.close {
+  font-size: 4em;
+  margin-bottom: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+#statistic > div {
+  margin-bottom: 10px;
+}
+#statistic > div p:first-of-type:not(.barLegend) {
+  text-decoration: underline;
+  font-weight: 500;
+  color: #777;
+  margin: 20px 0 10px 0;
+  font-size: 17px;
+}
+.bold {
+  font-weight: bolder;
+  font-size: 2em;
+}
+.bar {
+  height: 10px;
+  background-color: rgb(128, 30, 6);
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in;
+}
+.barLegend {
+  text-decoration: none;
+  font-size: 0.9em;
+}
+.labels {
+  height: 80px;
+  top: -10px;
+}
+.labels div {
+  border-radius: 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  left: 15px;
+}
+.nozzles {
+  height: 70px;
+  top: -5px;
+}
+.nozzles > div {
+  background-image: url("materials/nozzle.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center top;
+  left: 30px;
+}
+.order-h2 {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  color: #333333;
+  transform: rotate(-90deg) translate(20px, 15px);
+}
+.order-h2 span {
+  font-size: 1.5em;
+}
+.modal {
+  pointer-events: none;
+  opacity: 0;
+  position: fixed;
+  width: 100vw;
+  height: 91vh;
+  top: 9vh;
+  left: 0;
+  background-color: white;
+  padding: 50px;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+}
+.modal.show {
+  pointer-events: inherit;
+  opacity: 1;
+}
+iframe {
+  opacity: 1;
+  height: 91vh;
+  width: 150vh;
+  overflow: hidden;
+  position: absolute;
+  left: 10vw;
+  top: 0;
+  left: calc(50vw - 75vh);
+  overflow: hidden;
+}
+.square {
+  width: 13vw;
+  height: 13vw;
+}
+.square > div {
+  background: rgb(21, 110, 48);
+  margin-bottom: 3px;
+}
+#statistic > div .square p.each-portion {
+  text-decoration: none;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  color: #333333;
+  font-size: 2em;
+}
+.lean {
+  animation: leanForward 0.5s ease-out forwards;
+  transform-origin: bottom right;
+}
+@keyframes leanForward {
+  to {
+    transform: skewX(13deg);
+  }
+}
