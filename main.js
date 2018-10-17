@@ -265,9 +265,7 @@ function update() {
     customerInServingCount}, 30px)`;
   // generate each customer under service
   for (
-    let customerIndex = 0;
-    customerIndex < customerInServingCount;
-    customerIndex++
+    let customerIndex = 0; customerIndex < customerInServingCount; customerIndex++
   ) {
     let eachCustomer = document.createElement("div");
     eachCustomer.classList.add("serving");
@@ -282,9 +280,7 @@ function update() {
   }
   // generate each customer in queue
   for (
-    let customerIndex = 0;
-    customerIndex < customerInQueueCount;
-    customerIndex++
+    let customerIndex = 0; customerIndex < customerInQueueCount; customerIndex++
   ) {
     let eachCustomer = document.createElement("div");
     eachCustomer.setAttribute("data-ordernr", data.queue[customerIndex].id);
@@ -305,8 +301,8 @@ function update() {
         // find out the ordered beer is in which column
         let tapIndex = Number(
           document
-            .querySelector(`[data-beername='${o}']`)
-            .getAttribute("data-tapindex")
+          .querySelector(`[data-beername='${o}']`)
+          .getAttribute("data-tapindex")
         );
         let currentCount = document
           .querySelector(
@@ -339,8 +335,8 @@ function update() {
         // find out the ordered beer is in which column
         let tapIndex = Number(
           document
-            .querySelector(`[data-beername='${o}']`)
-            .getAttribute("data-tapindex")
+          .querySelector(`[data-beername='${o}']`)
+          .getAttribute("data-tapindex")
         );
         //        console.log("tapIndex: " + tapIndex);
         let currentCount = document
@@ -396,8 +392,8 @@ function update() {
     if (b.statusDetail === "pourBeer") {
       if (
         document
-          .querySelector(`.labels>div:nth-of-type(${b.usingTap + 1})`)
-          .className.indexOf("lean") < 0
+        .querySelector(`.labels>div:nth-of-type(${b.usingTap + 1})`)
+        .className.indexOf("lean") < 0
       ) {
         // lean tap
         document.querySelector(
