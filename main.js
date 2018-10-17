@@ -148,7 +148,6 @@ function buildStructure(data) {
       eachNotOnTap.className = "beer not-on-tap";
       eachNotOnTap.setAttribute("data-beername", beerName);
       let beerHeading = document.createElement("h1");
-      beerHeading.textContent = beerName;
       eachNotOnTap.appendChild(beerHeading);
       beerSection.appendChild(eachNotOnTap);
     }
@@ -219,7 +218,7 @@ function update() {
       if (s.name === beerName) {
         b.setAttribute("data-storage", s.amount);
         let storage = document.createElement("span");
-        storage.textContent = " *" + s.amount;
+        storage.innerHTML = " *" + s.amount + "   &#9432;";
         if (b.querySelector("span")) {
           b.querySelector("span").remove();
         }
@@ -436,7 +435,6 @@ function update() {
         `.labels>div:nth-of-type(${gridStart})`
       ).className = "";
     } else if (b.statusDetail === "waiting") {
-      console.log(bartenderName, "is waiting");
       document
         .querySelector(`[data-name='${bartenderName}']`)
         .classList.add("hide");
