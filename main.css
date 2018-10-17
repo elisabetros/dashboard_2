@@ -54,7 +54,7 @@ section.storages {
   padding: 0 50px;
 }
 
-section.customers>div {
+section.customers > div {
   display: grid;
   border-bottom: 1px dotted #333333;
   padding-top: 5px;
@@ -62,15 +62,16 @@ section.customers>div {
 }
 
 section.customers {
+  display: none;
   padding-top: 30px;
   margin-top: 20px;
   background-color: rgb(235, 235, 235);
   min-height: 175px;
 }
 
-section.bartenders {
+/* section.bartenders {
   background-color: rgb(235, 235, 235);
-}
+} */
 
 /* section.customers > div > * {
   left: 75px; /* temp solution, not dynamic 
@@ -81,8 +82,9 @@ section.bartenders {
   height: 30px;
   border-radius: 50%;
   padding-top: 4px;
-  border: 2px dotted #333333;
+  border: 2px dotted white;
   grid-row-start: 1;
+  color: white;
 }
 
 .bartender p {
@@ -144,7 +146,7 @@ section.glasses {
   left: 5px;
 }
 
-section.glasses>div {
+section.glasses > div {
   height: 100%;
   background-size: contain;
   background-repeat: no-repeat;
@@ -233,11 +235,11 @@ p.close {
   transition: all 0.3s ease-in-out;
 }
 
-#statistic>div {
+#statistic > div {
   margin-bottom: 10px;
 }
 
-#statistic>div p:first-of-type:not(.barLegend) {
+#statistic > div p:first-of-type:not(.barLegend) {
   text-decoration: underline;
   font-weight: 500;
   color: #777;
@@ -280,7 +282,7 @@ p.close {
   top: -5px;
 }
 
-.nozzles>div {
+.nozzles > div {
   background-image: url("materials/nozzle.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -289,11 +291,9 @@ p.close {
 }
 
 .order-h2 {
-
   left: 0;
   bottom: 0;
   color: #333333;
-
 }
 
 .order-h2 span {

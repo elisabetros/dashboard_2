@@ -190,7 +190,6 @@ function buildStructure(data) {
     bartenderLegend.className = "hide"; // no need to display, just store the data
     bartenderLegend.setAttribute("data-bartenderIndex", bIndex);
     bartenderLegend.textContent = b.name;
-
   }
 
   const aliveKegs = document.querySelectorAll(".beer:not(.not-on-tap)");
@@ -266,7 +265,9 @@ function update() {
     customerInServingCount}, 30px)`;
   // generate each customer under service
   for (
-    let customerIndex = 0; customerIndex < customerInServingCount; customerIndex++
+    let customerIndex = 0;
+    customerIndex < customerInServingCount;
+    customerIndex++
   ) {
     let eachCustomer = document.createElement("div");
     eachCustomer.classList.add("serving");
@@ -281,7 +282,9 @@ function update() {
   }
   // generate each customer in queue
   for (
-    let customerIndex = 0; customerIndex < customerInQueueCount; customerIndex++
+    let customerIndex = 0;
+    customerIndex < customerInQueueCount;
+    customerIndex++
   ) {
     let eachCustomer = document.createElement("div");
     eachCustomer.setAttribute("data-ordernr", data.queue[customerIndex].id);
@@ -302,8 +305,8 @@ function update() {
         // find out the ordered beer is in which column
         let tapIndex = Number(
           document
-          .querySelector(`[data-beername='${o}']`)
-          .getAttribute("data-tapindex")
+            .querySelector(`[data-beername='${o}']`)
+            .getAttribute("data-tapindex")
         );
         let currentCount = document
           .querySelector(
@@ -336,8 +339,8 @@ function update() {
         // find out the ordered beer is in which column
         let tapIndex = Number(
           document
-          .querySelector(`[data-beername='${o}']`)
-          .getAttribute("data-tapindex")
+            .querySelector(`[data-beername='${o}']`)
+            .getAttribute("data-tapindex")
         );
         //        console.log("tapIndex: " + tapIndex);
         let currentCount = document
@@ -390,12 +393,11 @@ function update() {
       .querySelector(`[data-name='${bartenderName}']`)
       .setAttribute("data-servingCustomer", b.servingCustomer);
 
-
     if (b.statusDetail === "pourBeer") {
       if (
         document
-        .querySelector(`.labels>div:nth-of-type(${b.usingTap + 1})`)
-        .className.indexOf("lean") < 0
+          .querySelector(`.labels>div:nth-of-type(${b.usingTap + 1})`)
+          .className.indexOf("lean") < 0
       ) {
         // lean tap
         document.querySelector(
@@ -412,17 +414,17 @@ function update() {
       ).style.gridColumnStart = b.usingTap + 1;
       //      console.log(b.name + "on tap nr: " + b.usingTap);
       // put bartender on the row of of the customer he's serving
-      let customerPosition = document
-        .querySelector("[data-ordernr='" + b.servingCustomer + "']")
-        .getBoundingClientRect().top;
-      let originalBartenderPosition = document
-        .querySelector(`[data-name='${bartenderName}']`)
-        .getBoundingClientRect().top;
-      document.querySelector(
-        `[data-name='${bartenderName}']`
-      ).style.top = `${customerPosition - originalBartenderPosition}px`;
-      document.querySelector(`[data-name='${bartenderName}']`).style.left =
-        "70px";
+      // let customerPosition = document
+      //   .querySelector("[data-ordernr='" + b.servingCustomer + "']")
+      //   .getBoundingClientRect().top;
+      // let originalBartenderPosition = document
+      //   .querySelector(`[data-name='${bartenderName}']`)
+      //   .getBoundingClientRect().top;
+      // document.querySelector(
+      //   `[data-name='${bartenderName}']`
+      // ).style.top = `${customerPosition - originalBartenderPosition}px`;
+      // document.querySelector(`[data-name='${bartenderName}']`).style.left =
+      //   "70px";
     } else if (b.statusDetail === "releaseTap") {
       // get the index of tap that's being released, which is releted to the bartender grid  colunm start
       let releasedTap = document.querySelector(
@@ -437,8 +439,11 @@ function update() {
       document.querySelector(
         `.labels>div:nth-of-type(${gridStart})`
       ).className = "";
-
-
+    } else if (b.statusDetail === "waiting") {
+      console.log(bartenderName, "is waiting");
+      document
+        .querySelector(`[data-name='${bartenderName}']`)
+        .classList.add("hide");
     }
   }
   setTimeout(update, 1000);
